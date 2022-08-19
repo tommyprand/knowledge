@@ -129,18 +129,18 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
-  "active": "3cb99b8cd397ba72",
+  "active": "5f8afd11f54dc887",
   "lastOpenFiles": [
     "Inbox/Senza nome.md",
-    "Inbox/20 agosto 2022.md",
     "Daily Notes/20 agosto 2022.md",
+    "Inbox/20 agosto 2022.md",
     "Daily Notes/20 August 2022.md",
     "John Cena.md",
     "virgin.md"

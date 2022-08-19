@@ -1,5 +1,5 @@
 {
-  "commitMessage": "",
+  "commitMessage": "Backup: {{date}}. File modificati: {{numFiles}}",
   "autoCommitMessage": "Backup: {{date}}. File modificati: {{numFiles}}",
   "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
   "autoSaveInterval": 0,
