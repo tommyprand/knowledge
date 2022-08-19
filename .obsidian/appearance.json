@@ -1,0 +1,9 @@
+{
+  "theme": "system",
+  "interfaceFontFamily": "SF Pro",
+  "textFontFamily": "SF Pro Text,New York",
+  "monospaceFontFamily": "SF Mono",
+  "translucency": true,
+  "cssTheme": "",
+  "baseFontSize": 16
+}

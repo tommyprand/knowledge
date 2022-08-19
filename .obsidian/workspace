@@ -1,0 +1,148 @@
+{
+  "main": {
+    "id": "7e0a73fab23aedf1",
+    "type": "split",
+    "children": [
+      {
+        "id": "3cb99b8cd397ba72",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Daily Notes/20 agosto 2022.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "621d41b977c18d0c",
+    "type": "split",
+    "children": [
+      {
+        "id": "b36614487725cd06",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7ab59a368a024566",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "c8a7b7fc07f514a7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "84589a5b6cb65148",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cfde833590b533ff",
+    "type": "split",
+    "children": [
+      {
+        "id": "c5968b425d30e084",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5f8afd11f54dc887",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Daily Notes/20 agosto 2022.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b28345027db408f1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Daily Notes/20 agosto 2022.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "7de84c9625553751",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b8fc8077cbdf6cfe",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Daily Notes/20 agosto 2022.md"
+              }
+            }
+          },
+          {
+            "id": "cdb51a051e22fcd0",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "3cb99b8cd397ba72",
+  "lastOpenFiles": [
+    "Inbox/Senza nome.md",
+    "Inbox/20 agosto 2022.md",
+    "Daily Notes/20 agosto 2022.md",
+    "Daily Notes/20 August 2022.md",
+    "John Cena.md",
+    "virgin.md"
+  ]
+}
