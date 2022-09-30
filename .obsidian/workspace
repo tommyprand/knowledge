@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "3cb99b8cd397ba72",
+        "id": "fc4a7c9305ff148f",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Daily Notes/20 agosto 2022.md",
+            "file": "Uni/Dati e algoritmi/Lezione 1 (30-09-22).md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "cfde833590b533ff",
@@ -77,7 +78,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Notes/20 agosto 2022.md",
+                "file": "Uni/Dati e algoritmi/Lezione 1 (30-09-22).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +95,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Notes/20 agosto 2022.md",
+                "file": "Uni/Dati e algoritmi/Lezione 1 (30-09-22).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Notes/20 agosto 2022.md"
+                "file": "Uni/Dati e algoritmi/Lezione 1 (30-09-22).md"
               }
             }
           },
@@ -128,18 +129,27 @@
               "type": "review-queue-list-view",
               "state": {}
             }
+          },
+          {
+            "id": "882b01b0c8cee578",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
-  "active": "5f8afd11f54dc887",
+  "active": "fc4a7c9305ff148f",
   "lastOpenFiles": [
-    "Inbox/Senza nome.md",
+    "Daily Notes/30 settembre 2022.md",
     "Daily Notes/20 agosto 2022.md",
+    "Inbox/Senza nome.md",
     "Inbox/20 agosto 2022.md",
     "Daily Notes/20 August 2022.md",
     "John Cena.md",
