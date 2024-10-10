@@ -72,3 +72,30 @@ The most know virtualisation example is **virtual memory**, which give the abstr
 - For _abstraction_ the focus is on the interface provided by the _execution environment_ and building a "higher-level" concept from that. This implies that changes in this environment will eventually break the abstraction.
 - For _virtualisation_ the focus in on the interface provided to the _upper layers_, and it promises to them to always hold even after changes to the bottom layers. This obviously requires a great implementation effort.
 
+#### Abstracting the OS
+
+With prior knowledge of the OS external descriptors and their life cycle (think about UEFI boot manager with [EFI](https://en.wikipedia.org/wiki/EFI_system_partition) partition), then we can manipulate it from the outside (hypervisor). This mean we could start, stop, resume, copy or move it around, given we have a file system capable of handling _very big_ files.
+
+#### Architecture and interfaces
+
+The following image shows the relationships between API, ABI and ISA. 
+
+The former operates on _homogeneous_ (aka "same language") programs that implement the same calling convections for abstractions (being on the same language and thus compiler).
+
+ABI operates at the boundary between _heterogeneous_ binaries (the OS and any binary program). Invoking a system call requires the understanding of the ABI for that specific routine, the programmer doesn't need to know it (just call `write(fd, buf, len)` in the code for example), it is responsibility of the compiler to translate the code into appropriate steps, this involves putting arguments in appropriate registers and _trapping_ to the kernel (aka passing control to it via a software interrupt raising _privilege level_). In response to the _software trap_ the kernel will handle the request and execute the associated routine, then return the result and restore the caller context (register status). [Link to the ABI for ChromeOS on ARM](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#arm-32_bit_EABI).
+Note that this implies that a binary compiled for a specific ABI (eg Linux) will obviously not work on other environments.
+
+The lowest level is represented by the ISA, it is the set of all supported operations by a specific microprocessor architecture (eg x86, ARM, SPARC, etc...), and it thoroughly specified op-codes, operands, results and side-effects in memory. A the end of the day every abstraction becomes a sequence of machine instructions executed by the CPU.
+
+<span style="display: block; float: left; width: 50%; padding-right: 10px">![[IMG_58207C9F884F-1.jpeg]]</span><span style="display: block; float: left; width: 50%">![[IMG_46D906D61393-1.jpeg]]</span>
+
+Notice that changes in the bottom layers (ISA and ABI), may affect (and break) everything that stands on top, thus we need to augment these abstractions with virtualisation to give strong guarantees to the interfaces.
+
+But at which level should we operate?
+
+#### Process-level virtualisation
+
+Process level virtualisation means the hypervisor _virtualises_ single processes in order to provide isolation or independence from the underlying OS. An example of this is the [Wine](https://en.wikipedia.org/wiki/Wine_(software)) compatibility layer that allows Windows binary applications to run on Linux by providing the virtualised application with a Windows-like environment.
+In this case the process doesn't know it is been running on a virtualised environment.
+
+![[IMG_DDA1DCFC5951-1.jpeg]]
