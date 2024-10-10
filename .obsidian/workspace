@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "fc4a7c9305ff148f",
+        "id": "28a6439fa03fa74d",
         "type": "leaf",
         "state": {
           "type": "markdown",
@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "\"problema computazionale\"",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -61,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "cfde833590b533ff",
@@ -143,16 +142,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
-  "active": "fc4a7c9305ff148f",
+  "active": "28a6439fa03fa74d",
   "lastOpenFiles": [
+    "Daily Notes/16 settembre 2024.md",
+    "Uni/Dati e algoritmi/Lezione 2 (03-10-22).md",
+    "Uni/Dati e algoritmi/Lezione 1 (30-09-22).md",
+    "Daily Notes/03 ottobre 2022.md",
     "Daily Notes/30 settembre 2022.md",
     "Daily Notes/20 agosto 2022.md",
     "Inbox/Senza nome.md",
     "Inbox/20 agosto 2022.md",
     "Daily Notes/20 August 2022.md",
-    "John Cena.md",
-    "virgin.md"
+    "John Cena.md"
   ]
 }

@@ -1,0 +1,170 @@
+{
+  "main": {
+    "id": "8350fb91e10fe19f",
+    "type": "split",
+    "children": [
+      {
+        "id": "75ae398db44e6935",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "56a1092d026795e6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bff665a8ab0f3829",
+    "type": "split",
+    "children": [
+      {
+        "id": "05b83bb39dff44b7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b3bb879501d9b6d4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b3c10016762dbd15",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "84dc9567acd76ec3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "df124bd6fc814832",
+    "type": "split",
+    "children": [
+      {
+        "id": "1640a7c6fdde15a0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "66c6d58395cd7bd4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "851b12f852b0ea28",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b216da6e620131e4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "f6dc9c4ed516a8af",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Uni/Runtimes for Concurrency and Distribution.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selezione rapida": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota del giorno": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false
+    }
+  },
+  "active": "b3bb879501d9b6d4",
+  "lastOpenFiles": [
+    "Uni/Definitions.md",
+    "Uni/Runtimes for Concurrency and Distribution.md",
+    "Uni/attachments/IMG_DCF45BA72DAC-1.jpeg",
+    "Uni/attachments/IMG_088E34B1252C-1 1.jpeg",
+    "Uni/attachments/IMG_088E34B1252C-1.jpeg",
+    "Uni/attachments/IMG_C975AFCB3744-1.jpeg",
+    "Uni/Formal Methods for Cyber-Physical Systems.md",
+    "Uni/attachments/IMG_7F860A92599F-1.jpeg",
+    "Uni/attachments/IMG_5EF06708B9F9-1 1.jpeg",
+    "Daily Notes/09 ottobre 2024.md",
+    "Uni/attachments/IMG_5EF06708B9F9-1.jpeg",
+    "Uni/Computability.md",
+    "Uni/attachments/surjective-function-svg.svg",
+    "Uni/attachments/injective-function-svg.svg",
+    "Uni/attachments",
+    "Daily Notes/07 ottobre 2024.md",
+    "Inbox/Senza nome 1.md"
+  ]
+}

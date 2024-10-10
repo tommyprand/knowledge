@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <style>
+    text { fill: #ffffff; }
+    .domain { stroke: #4a90e2; }
+    .codomain { stroke: #e24a4a; }
+    .element-a { fill: #4a90e2; }
+    .element-b { fill: #e24a4a; }
+    .arrow { stroke: #50c878; }
+  </style>
+  
+  <!-- Domain A -->
+  <ellipse cx="75" cy="100" rx="60" ry="90" fill="none" class="domain" stroke-width="2"/>
+  <text x="75" y="20" text-anchor="middle" font-size="16">Domain A</text>
+  
+  <!-- Codomain B -->
+  <ellipse cx="225" cy="100" rx="60" ry="90" fill="none" class="codomain" stroke-width="2"/>
+  <text x="225" y="20" text-anchor="middle" font-size="16">Codomain B</text>
+  
+  <!-- Elements in Domain A -->
+  <circle cx="60" cy="60" r="5" class="element-a"/>
+  <circle cx="60" cy="100" r="5" class="element-a"/>
+  <circle cx="60" cy="140" r="5" class="element-a"/>
+  
+  <!-- Elements in Codomain B -->
+  <circle cx="240" cy="50" r="5" class="element-b"/>
+  <circle cx="240" cy="90" r="5" class="element-b"/>
+  <circle cx="240" cy="130" r="5" class="element-b"/>
+  <circle cx="240" cy="170" r="5" class="element-b"/>
+  
+  <!-- Arrows representing the function -->
+  <path d="M65,60 Q150,55 235,50" fill="none" class="arrow" stroke-width="2"/>
+  <path d="M65,100 Q150,95 235,90" fill="none" class="arrow" stroke-width="2"/>
+  <path d="M65,140 Q150,135 235,130" fill="none" class="arrow" stroke-width="2"/>
+</svg>
