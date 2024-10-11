@@ -22,6 +22,8 @@ In reality these assumptions must be enforced by the actual implementation.
 
 In order to describe the components of a system we will use a modelling language called **Synchronous Reactive Components**, with well defined _syntactic_ and _semantic_ definitions.
 
+![[IMG_8A7FD5629A2D-1.jpeg]]
+
 #### Example (Delay component)
 
 ![[IMG_5EF06708B9F9-1.jpeg]]
@@ -72,16 +74,16 @@ The execution in every round is determined by the set $React$ that contains the 
 The set of _Reactions_ $[\![React]\!]$ contains tuples mapping all the possible states and inputs to all the possible new states and outputs; in fact $[\![React]\!] \subseteq Q_S \times Q_I \times Q_O \times Q_S$ 
 
 For a [[#Example (Delay component) | delay]] component
-$$React = \{ out := in; x := in \}$$
-$$[\![React]\!] = \{ (0, 0, 0, 0), (0, 1, 1, 0), (1, 0, 0, 1), (1, 1, 1, 1) \}$$
+$$React = \{ out := x; x := in \}$$
+$$[\![React]\!] = \{ (0, 0, 0, 0), (0, 1, 0, 1), (1, 0, 1, 0), (1, 1, 1, 1) \}$$
 Which correspond to this table:
 $$
 \begin{array}{ |cccc| }
 	\hline
-	x & in & out & s \\ \hline
+	x & in & out & x' \\ \hline
 	0 & 0 & 0 & 0 \\ \hline
-	0 & 1 & 1 & 0 \\ \hline
-	1 & 0 & 0 & 1 \\ \hline
+	0 & 1 & 0 & 1 \\ \hline
+	1 & 0 & 1 & 0 \\ \hline
 	1 & 1 & 1 & 1 \\ \hline
 \end{array}
 $$
@@ -91,8 +93,32 @@ To create this table one should first write down all the possible input and old 
 #### Multiple reactions
 
 If we replace $React$ with this new fragment of code: $React = \{ out := x; x := \text{choose}\{in, x\}\}$ then we create a non-deterministic reaction, which means that, given old _State_ and _Input_, the _Output_ and new _State_ **are not unique!**. This increase the number of reactions from 4 to 6.
+$$
+\begin{array}{ |cccc| }
+	\hline
+	x & in & out & x' \\ \hline
+	0 & 0 & 0 & 0 \\ \hline
+	0 & 1 & 0 & 1 \\ \hline
+	0 & 1 & 0 & 0 \\ \hline
+	1 & 0 & 1 & 0 \\ \hline
+	1 & 0 & 1 & 1 \\ \hline
+	1 & 1 & 1 & 1 \\ \hline
+\end{array}
+$$
 
-Instead by replacing $React$ with $React = \{ \texttt{if } x != 0 \texttt{ then } \{ out := x; x := in \}\}$, we obtain that with some combinations of input and/or current state there will **not be any reaction**, thus now the set contains only 2 reactions.
+Instead by replacing $React$ with $React = \{ \texttt{if } x \neq 0 \texttt{ then } \{ out := x; x := in \}\}$, we obtain that with some combinations of input and/or current state there will **not be any reaction**, thus now the set contains only 2 reactions.
+$$
+\begin{array}{ |cccc| }
+	\hline
+	x & in & out & x' \\ \hline
+	1 & 0 & 1 & 0 \\ \hline
+	1 & 1 & 1 & 1 \\ \hline
+\end{array}
+$$
+
+### Local variables
+
+Components may also contain local variables $L$ that are _not_ persisted across rounds and are use to help with update code execution.
 
 ### Update code constraints
 
@@ -109,6 +135,7 @@ In case the update code violates those rules then $[\![React]\!] = \emptyset$.
 - Set $I$ of typed input variables $\rightarrow$ set $Q_I$ of possible input values
 - Set $O$ of typed output variables $\rightarrow$ set $Q_O$ of possible output values
 - Set $S$ of typed state variables $\rightarrow$ set $Q_S$ of possible state values
+- Set $L$ of typed local variables
 - Initialisation code $Init$ $\rightarrow$ set $[\![Init]\!]$ of possible initial states
 - Update code $React$ $\rightarrow$ set $[\![React]\!]$ of possible reactions in the form $s \xrightarrow{\text{i/o}} t$.
 
@@ -125,6 +152,53 @@ A special type an input/output variable can have is the type _event_. An _event_
 -  $x?$ returns $1$ if the value present $0$ otherwise ($x \neq \bot$)
 - $x!v$ is the assignment $x := v$
 - By default an event is absent
-- Event-triggered components only executes in those rounds where and actual input event is present
+- Event-triggered components only executes in those rounds where an actual input event is present
 
 ![[IMG_7F860A92599F-1.jpeg]]
+
+### Tasks
+
+Reaction code inside a component may be split into _tasks_ to improve readability or composability.
+Tasks are atomic blocks of code where each one specifies the variables it reads and writes.
+Tasks inside a component form a _task graph_ where edges are precedence relations and nodes are tasks, this graph **must be acyclic** (otherwise there would be an unresolvable circular dependency).
+
+![[IMG_A38A66FD5091-1 3.jpeg]]
+
+#### Formal notation
+More formally for an SRC $C = (I, O, S, Init, React)$, reaction description is given by a _set of tasks_ and precedence edges over these tasks.
+We denote precedence with $A \prec B$, which means "$A$ precedes $B$". With $A \prec^{+} B$ we indicate that $A$ precedes $B$ _transitively_ across other tasks (possibly none).
+Each task $A$ is specified by:
+- A read set $R \subseteq I \cup S \cup O \cup L$ of variables
+- A write set $W \subseteq S \cup O \cup L$ of variables
+- An $Update$ set containing the code instructions to write $W$ based on vars in $R$. The set $[\![Update]\!] \subseteq Q_R \times Q_W$ contains all the reactions of the task.
+
+#### Task schedule
+
+The **task schedule** of an SRC is the _total ordering_ of all the $A_1, ..., A_n$ tasks of the component _consistent_ with the task graph edges. (If $A' \prec A \implies A'$ appears before than $A$ in the ordering). Note that there might be multiple valid schedules.
+The acyclic constraint implies that there is _always_ at least one valid scheduling.
+
+#### Await dependencies
+
+Given two variables $x \in I$ and $y \in O$ there exist an **await dependency relation** ($y \succ x$) between the two if either:
+- There exist a task $A$ that reads $x$ and writes $y$.
+- There are two tasks $A_1, A_2$ where $A_1$ reads $x$, $A_2$ writes $y$ and there is a precedence relation between the two: $A_1 \prec^+ A_2$
+
+$y$ await $x$ means that _y cannot be produced before x is supplied_.
+
+### Write conflicts
+
+A _write-conflict_ between two tasks $A_1$ and $A_2$ happens when there is a variable written by $A_1$, and read or written by $A_2$, and there is **not** an enforced ordering between the tasks. This causes the result of the execution to be dependent on the random ordering of execution of the two task.
+To solve this we have to explicitly set $A_1 \prec^+ A_2$ or viceversa.
+
+The set of reactions given by a task graph without write-conflicts _do not depend on the task schedule_.
+
+### Requirements on task graph
+
+A task graph is valid only if:
+1. The graph is _acyclic_ (ensure scheduling)
+2. Each output variable is in the write set of **exactly one** task
+3. Tasks with a write conflict must be _ordered_
+4. Output and local variables are written before being read (no uninitialised variables)
+
+## Component composition
+
