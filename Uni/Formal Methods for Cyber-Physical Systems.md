@@ -16,7 +16,7 @@ The following assumptions are made:
 1. The time needed to execute the update code at each time step is negligible, this implies that reception of inputs and production of outputs happens at the same time.
 2. When multiple components are composed together they still execute synchronously and simultaneously during the ticking of the global clock.
 
-In reality these assumptions should be enforced by the actual implementation.
+In reality these assumptions must be enforced by the actual implementation.
 
 ## Synchronous Reactive Components
 

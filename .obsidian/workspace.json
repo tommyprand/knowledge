@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "file": "Uni/Formal Methods for Cyber-Physical Systems.md",
                 "mode": "preview",
                 "source": true
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "file": "Uni/Formal Methods for Cyber-Physical Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "file": "Uni/Formal Methods for Cyber-Physical Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md"
+                "file": "Uni/Formal Methods for Cyber-Physical Systems.md"
               }
             }
           }
@@ -149,11 +149,11 @@
   },
   "active": "56a1092d026795e6",
   "lastOpenFiles": [
+    "Uni/Runtimes for Concurrency and Distribution.md",
     "Uni/attachments/IMG_DDA1DCFC5951-1.jpeg",
     "Uni/attachments/IMG_46D906D61393-1.jpeg",
     "Uni/attachments/IMG_58207C9F884F-1.jpeg",
     "Uni/Definitions.md",
-    "Uni/Runtimes for Concurrency and Distribution.md",
     "Uni/attachments/IMG_DCF45BA72DAC-1.jpeg",
     "Uni/attachments/IMG_088E34B1252C-1 1.jpeg",
     "Uni/attachments/IMG_088E34B1252C-1.jpeg",
@@ -164,7 +164,6 @@
     "Daily Notes/09 ottobre 2024.md",
     "Uni/attachments/IMG_5EF06708B9F9-1.jpeg",
     "Uni/Computability.md",
-    "Uni/attachments/surjective-function-svg.svg",
     "Uni/attachments",
     "Daily Notes/07 ottobre 2024.md",
     "Inbox/Senza nome 1.md"
