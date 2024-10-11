@@ -156,6 +156,15 @@ A special type an input/output variable can have is the type _event_. An _event_
 
 ![[IMG_7F860A92599F-1.jpeg]]
 
+### Extended State Machines
+
+State machines are a common way of describing the behaviour of a component in model-based design. In this notation we there is an implicit state variable ranging over an _enumeration_, called the _mode_ of the state machine.
+The different modes are represented with circles with the _transitions_ between them marked with arrows.
+
+In _extended_ state machines the description is augmented with additional state variables. Edges in the graph contain code that _guards_ the transition between modes and eventually updates the augmented state.
+
+![[IMG_2AF04793A09E-1.jpeg]]
+
 ### Tasks
 
 Reaction code inside a component may be split into _tasks_ to improve readability or composability.
@@ -200,5 +209,47 @@ A task graph is valid only if:
 3. Tasks with a write conflict must be _ordered_
 4. Output and local variables are written before being read (no uninitialised variables)
 
-## Component composition
+## Component Composition
 
+To describe complex systems we obviously desire to compose already existing components in order to save time, increase modularity and improve clarity.
+
+#### DoubleDelay
+![[IMG_4D072697F987-1.jpeg]]
+
+In this example we have _composed_ two _instances_ of the [[#Example (Delay component) | Delay]] component to create a _DoubleDelay_ component (output = input two round before).
+Three operations have been made to compose these components:
+1. **Instantiation**: Similar to _classes_ and _objects_ in OOP, _Delay1_ and _Delay2_ are _instances_ of the _Delay_ component. These instances are obtained by renaming the input/output variables. Note that in a system there **cannot** be state variables with the same name to avoid conflicts (see [[#I/O Variable Renaming]]).
+2. **Parallel Composition**: The two _instances_ run in parallel, this means they execute [[#Synchronous models|synchronously]] and _simultaneously_ with the output of _Delay1_ being the input of _Delay2_. At each round _Delay1_ reads _in_, updates its state and outputs _temp_. At the same round _Delay2_ reads _temp_, updates its state and outputs _out_. Communication between the two is also _synchronous_.
+3. **Output Hiding**: The auxiliary variable _temp_ is hidden from the outside of the component since its just an "utility" variable.
+
+Formally this component would be written as $$(\texttt{Delay}[out \mapsto temp] \ \| \ {Delay}[in \mapsto temp]) \setminus temp$$
+
+### I/O Variable Renaming
+
+Before composing components it is necessary to rename variables appropriately to avoid conflicts (state variables), and _explicitly_ determine connections between components.
+
+In particular in a system there must not be components with state variables having the same name to prevent conflicts.
+Input/output variables must be named to create connections between components (see $temp$ [[#DoubleDelay]] above).
+
+Usually state variable rename is _implicit_, while i/o renaming must be _explicit_ (it is not possible to determine _automatically_ relations between components).
+
+#### Notation
+Let $C = (I, O, S, Init, React)$ be a SRC component, $x$ be an input or output variable, and $y$ a _fresh_ variable with the same type of $x$, so that the name of $y$ is not already taken by any other variable in $C$.
+We denote the renaming of $x$ in $y$ with $C_R = C[x \mapsto y]$
+
+### Parallel Composition
+
+Parallel composition combines two components into a single one whose behaviour captures the synchronous interaction between the two composed components.
+
+#### Variable Names Compatibility
+
+Let $C_1 = (I_1, O_1, S_1, Init_1, React_1)$ and $C_2 = (I_2, O_2, S_2, Init_2, React_2)$ then it must be that:
+- No naming conflict concerning state variables and variables in the other component: $$\begin{cases}
+	S_1 \cap S_2 = \emptyset \\
+	S_1 \cap I_2 = \emptyset \\
+	S_1 \cap O_2 = \emptyset \\
+	\end{cases} $$
+	And viceversa 
+- A variable can be an input variable of both components
+- An output variable must be an output variable of exactly one component (only one component is responsible for every output)
+- An output variable of one component can be an input variable of the other
