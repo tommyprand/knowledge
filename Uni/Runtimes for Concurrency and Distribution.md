@@ -1,3 +1,5 @@
+```toc
+```
 ### Run-Time Environment
 
 For any program in execution (seen as the code that the user has actually written), there always is "something" interposed between itself and the processor. That "something" is some other software (obviously also executing), whose duty is to cause all of the abstractions that the program execution needs, to come into existence.
@@ -99,3 +101,41 @@ Process level virtualisation means the hypervisor _virtualises_ single processes
 In this case the process doesn't know it is been running on a virtualised environment.
 
 ![[IMG_DDA1DCFC5951-1.jpeg]]
+
+### Distribution
+
+A _distributed system_ is an ensemble of independent computing nodes capable of collectively appearing as a single _coherent_ execution platform to applications running on it.
+To achieve this participating nodes coordinate among themselves in a manner fully transparent to the application.
+
+The nodes remain _independent_, they do not change their "nature", they just federate to achieve the computing goal, but they keep their existing RTE so the distributed runtime is **additive** on top of the existing one.
+
+Distribution is a _runtime effect_, it comes alive with the appropriate software at runtime.
+
+#### Transparency
+
+Contrary to the normal meaning we give to the word, in CS _transparency_ means being show the intended effects of the computation, without being exposed to the machinery. In some sense it involves something _opaque_ to the internal implementation.
+
+There are different types of transparency, some of which are reported below:
+
+| **Transparency of**     | **To hide what**                                                                                           |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Access                  | Difference in data encoding or in the way operations happen on actual data (eg. endianness)                  |
+| Location                | Where the computing actually happens (think about currencies)                                                |
+| Migration/Relocation    | Resources may move without the user needing to know (eg virtual servers on cloud)                            |
+| Replication/Transaction | Resources may exist in multiple replicated copies (in different locations) or composed by multiple fragments |
+| Malfunction             | Computing nodes may fail without affecting resource availability globally                                    |
+| Persistency             | Writing will always work no matter what happens in the middle between the writer and the resource            |
+
+#### Openness
+
+To achieve transparency we need _openness_ which prescribes all external interfaces conform to **public** and **stable** specifications that are:
+1. **Complete**: they do not hide any detail that could prevent third-party implementations
+2. **Neutral**: they do not force a single way of implementing them.
+
+Openness is a crucial prerequisite to **portability** and **interoperability**.
+
+_Interface Definition Languages_ help achieve this properties across language and system specific implementations.
+
+#### Concurrency
+
+
