@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Uni/Formal Methods for Cyber-Physical Systems.md",
-                "mode": "source",
+                "file": "Uni/Computability.md",
+                "mode": "preview",
                 "source": true
               }
             }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 204.5
   },
   "right": {
     "id": "df124bd6fc814832",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Uni/Formal Methods for Cyber-Physical Systems.md",
+                "file": "Uni/Computability.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Uni/Formal Methods for Cyber-Physical Systems.md",
+                "file": "Uni/Computability.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Uni/Formal Methods for Cyber-Physical Systems.md"
+                "file": "Uni/Computability.md"
               }
             }
           }
@@ -149,21 +149,20 @@
   },
   "active": "56a1092d026795e6",
   "lastOpenFiles": [
+    "Uni/Definitions.md",
+    "Uni/Computability.md",
+    "Uni/Runtimes for Concurrency and Distribution.md",
+    "Uni/Formal Methods for Cyber-Physical Systems.md",
     "Uni/attachments/IMG_4D072697F987-1.jpeg",
     "Uni/attachments/IMG_2AF04793A09E-1.jpeg",
     "Uni/attachments/IMG_A38A66FD5091-1 3.jpeg",
-    "Uni/Runtimes for Concurrency and Distribution.md",
-    "Uni/Computability.md",
-    "Uni/Formal Methods for Cyber-Physical Systems.md",
     "Uni/attachments/IMG_8A7FD5629A2D-1.jpeg",
     "Uni/attachments/IMG_DDA1DCFC5951-1.jpeg",
     "Uni/attachments/IMG_46D906D61393-1.jpeg",
     "Uni/attachments/IMG_58207C9F884F-1.jpeg",
-    "Uni/Definitions.md",
     "Uni/attachments/IMG_DCF45BA72DAC-1.jpeg",
     "Uni/attachments/IMG_088E34B1252C-1 1.jpeg",
     "Uni/attachments/IMG_088E34B1252C-1.jpeg",
-    "Uni/attachments/IMG_C975AFCB3744-1.jpeg",
     "Daily Notes/09 ottobre 2024.md",
     "Uni/attachments",
     "Daily Notes/07 ottobre 2024.md",

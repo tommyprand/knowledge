@@ -13,3 +13,9 @@
 6. Input size is _unbounded_
 7. The computing agent has unbounded memory (so that we are not limited by the resources of the machine when evaluating computability)
 8. Instructions are _limited_ in number and complexity (or no machine would be possible)
+
+**URM-Computable function**: A (partial) function $f: \mathbb{N}^k \to \mathbb{N}$ is URM-computable if there exists a URM program $P$ such that for all $(a_1, \ldots, a_k) \in \mathbb{N}^k$ and $a \in \mathbb{N}$:
+
+$P(a_1, \ldots, a_k) \downarrow a$ if and only if $(a_1, \ldots, a_k) \in dom(f)$ and $f(a_1, \ldots, a_k) = a$.
+
+The output is conventionally stored in register $R_1$.
