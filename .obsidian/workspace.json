@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md",
-                "mode": "source",
+                "file": "Uni/Computability.md",
+                "mode": "preview",
                 "source": true
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "file": "Uni/Computability.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md",
+                "file": "Uni/Computability.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Uni/Runtimes for Concurrency and Distribution.md"
+                "file": "Uni/Computability.md"
               }
             }
           }
@@ -151,9 +151,9 @@
   },
   "active": "56a1092d026795e6",
   "lastOpenFiles": [
+    "Uni/Definitions.md",
     "Uni/Computability.md",
     "Uni/Runtimes for Concurrency and Distribution.md",
-    "Uni/Definitions.md",
     "Uni/Formal Methods for Cyber-Physical Systems.md",
     "Uni/attachments/IMG_4D072697F987-1.jpeg",
     "Uni/attachments/IMG_2AF04793A09E-1.jpeg",

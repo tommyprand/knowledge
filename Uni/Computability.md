@@ -1,3 +1,5 @@
+```toc
+```
 # Algorithm or effective procedure
 An **algorithm** is a description of a sequence of finite and elementary steps which allows to reach some objectives. Elementary means something that is achievable "mechanically" (i.e. without intelligence).
 
@@ -137,32 +139,11 @@ There are various models of computation that have been proposed to formalize the
 3. Partial recursive functions (Gödel-Kleene 1930)
 4. Canonical deductive systems (Post, 1943)
 5. Markov systems (Markov, 1951)
-6. Unlimited register machine (URM) (Shepherdson - Sturgis, 1963)
-
-Despite the variety, all these "sufficiently expressive" models define the same class of computable functions. This observation leads to the Church-Turing thesis.
-
-### Church-Turing Thesis
-
-> A function is computable by an effective procedure (i.e., in a finitary computational model, obeying the [[Definitions#^1acc78|conditions from the previous chapter]], if and only if it is computable by a Turing machine.
-
-**Note:** The Church-Turning thesis is not a formal theorem due to its reliance on the informal notion of an "effective procedure". It's supported by extensive evidence but cannot be formally proven.
-
-# URM Computability
-
-## Introduction to Computational Models
-
-There are various models of computation that have been proposed to formalize the notion of computability:
-
-1. Turing machine (Turing, 1936)
-2. λ-calculus (Church, 1930)
-3. Partial recursive functions (Gödel-Kleene 1930)
-4. Canonical deductive systems (Post, 1943)
-5. Markov systems (Markov, 1951)
 6. Unlimited Register Machine (URM) (Shepherdson - Sturgis, 1963)
 
 Despite the variety, all these "sufficiently expressive" models define the same class of computable functions. This observation leads to the Church-Turing thesis.
 
-### 1.1 Church-Turing Thesis
+### Church-Turing Thesis
 
 > A function is computable by an effective procedure (i.e., in a finitary computational model, obeying the [[Definitions#^1acc78|conditions for an effective procedure]]) if and only if it is computable by a Turing machine.
 
@@ -182,6 +163,8 @@ We'll use the URM model to formalise the notion of computable functions. A URM c
 2. **Successor:** $S(n)$ - Increments the content of register $R_n$ by 1.
 3. **Transfer:** $T(m,n)$ - Copies the content of register $R_m$ to $R_n$.
 4. **Conditional Jump:** $J(m,n,t)$ - If the contents of $R_m$ and $R_n$ are equal, jump to instruction $t$; otherwise, continue to the next instruction.
+
+Note the program will terminate when it encounters an empty instruction.
 
 ### URM Configuration and Execution
 
@@ -319,10 +302,11 @@ J(1,1,LOOP)
 END:
 ```
 
-We proceed by induction on the number $h$ of transfer instructions in $P$:
+Formally given $f \in \mathcal{C}$, $f: \mathbb{N}^{k} \rightarrow \mathbb{N}$ by definition there is a program $P$ that computes $f$ such that ${f_P}^{(k)} = f$. We will show that we can transform it in a program $P^{'} \in URM^{-}$ such that ${f_{P^{'}}}^{(k)} = {f_{P}}^{(k)}$.
+We proceed by induction on the number $h$ of transfer instructions in $P$. Note that we assume a _well formed_ program that halts at the last instruction plus one.
 
 - Base case ($h=0$): Trivial, $P = P'$ since $P$ is already a $URM^-$ program.
-- Inductive step ($h \to h+1$): Replace one transfer instruction with the subroutine above. The resulting program $P^{''}$ has $h$ transfer instructions. By the inductive hypothesis, there exists a $URM^-$ program $P'$ such that $f_P^{(k)} = f_{P_2}^{(k)} = f_{P'}^{(k)}$.
+- Inductive step ($h \to h+1$): Replace one transfer instruction with the subroutine above. The resulting program $P^{''}$ has $h$ transfer instructions. By the inductive hypothesis, there exists a $URM^-$ program $P'$ such that $f_P^{(k)} = f_{P^{''}}^{(k)} = f_{P'}^{(k)}$.
 
 ### URM with Swap Instructions (URM_S)
 
@@ -370,3 +354,324 @@ We prove by induction on $h$ that after $h$ execution steps, $r_1(h,x)$ is equal
   - $T(m,n)$: If $n>1$ or $n=m=1$, then $r_1(h+1,x) = r_1(h,x)$. If $n=1, m>1$, we don't know the content of $r_1(h+1,x)$.
 
 To resolve this issue, we can extend the proof to all the registers $r_j$ simultaneously, showing that $\forall j \in \mathbb{N} \ r_j(h,x)$ contains either $c$ or $x+c$ for a suitable constant $c$. This solves the problem and makes the last step working because now we do know the content of any register $r_j$.
+
+# Decidable Predicates
+
+A _k-ary predicate_ on $\mathbb{N}$ denoted as $Q(x_1, \dots , x_n)$ is a property that can be true or false, formally it can be seen as a:
+- function: $Q: (x_1, \dots , x_n) \rightarrow \{true, false\}$
+- set: $Q = \{ (x_1, \dots , x_n) \mid \text{the property is true for } (x_1, \dots , x_n)\}$
+We will write $Q: (x_1, \dots , x_n)$ to denote $(x_1, \dots, x_n) \in Q$ or $Q(x_1, \dots, x_n) = true$.
+
+$Q$ is (URM) computable if there exists a program $P$ that computes a function ${f_P}^{(k)}$ that returns $true$ in case $Q(x_1, \dots, x_n)$ and $false$ otherwise. The $true$ and $false$ values will be represented as 1 and 0 respectively.
+
+## Decidable Predicate (Definition)
+
+A predicate $Q \in \mathbb{N}^{k}$  is said to be _decidable_ if its _characteristic function_
+$$
+\mathcal{X}_Q(x_1, \dots, x_n) = \begin{cases}
+1 & \text{if } Q(x_1, \dots, x_n) \\
+0 & \text{otherwise}
+\end{cases}
+$$
+is $URM$-computable.
+
+**Note**: Any characteristic function is _total_, so for any possible $\mathcal{X}_Q(x_1, \dots, x_n)$, $dom(\mathcal{X}_Q) = \mathbb{N}^k$.
+
+# Computability on Other Domains
+
+The URM model we have defined is limited to operate on natural numbers, this means our notions about computability are also limited.
+
+We can extend our concepts by applying an _effective encoding_ to the domain we are interested in, in this way we can map from the "foreign" domain to the natural numbers and, once we operated on the _encoded_ function we can map back to the original.
+
+There are two main constraint for this operation:
+1. The domain $D$ must be countable since this guarantees the existence of a bijective mapping $\alpha: D \rightarrow \mathbb{N}$. Bijective is necessary for $\alpha$ to be invertible: $\alpha ^ {-1} (\alpha (x)) = x$.
+2. The encoding must be _effective_. We do not have a formal definition of "effectiveness".
+
+## Function Computable on Generic Domain (Definition)
+
+A function $f: D \rightarrow D$ is computable if $f^* = \alpha \circ f \circ \alpha^{-1}$ is $URM$-computable.
+
+$$
+\begin{equation*} \begin{array}{ccc}
+D & \xrightarrow{f} &  D \\
+\Big\downarrow{\scriptstyle\alpha} & & \Big\uparrow{\scriptstyle\alpha^{-1}} \\
+\mathbb{N} & \xrightarrow{f^*} & \mathbb{N} \end{array} \end{equation*}
+$$
+
+### Example: Computability on Integers
+
+To define computability for functions over $\mathbb{Z}$ we need an effective encoding $\alpha$.
+
+One possible solution is the following:
+$$
+\alpha(z) = \begin{cases}
+2z & \text{if } z \geq 0 \\
+-2z - 1 & \text{otherwise}
+\end{cases}
+$$
+
+Then it follows the inverse mapping is:
+$$
+\alpha^{-1}(n) = \begin{cases}
+\frac{n}{2} & \text{if } n \text{ is even} \\
+-\frac{n + 1}{2} & \text{if } n \text{ is odd}
+\end{cases}
+$$
+
+Consider the function $f: \mathbb{Z} \rightarrow \mathbb{Z}$, $f(z) = |z|$. It is computable if $f^* = \alpha \circ f \circ \alpha^{-1}$ is $URM$-computable.
+
+$$
+f^*(n) = \alpha \circ f \circ \alpha^{-1}(n) \\
+$$
+$$
+= \begin{cases}
+(\alpha \circ f)(\frac{n}{2}) & \text{if } n \text{ is even} \\
+(\alpha \circ f)(-\frac{n + 1}{2}) & \text{if } n \text{ is odd}
+\end{cases}
+$$
+$$
+= \begin{cases}
+\alpha(\frac{n}{2}) & \text{if } n \text{ is even} \\
+\alpha(-\frac{n + 1}{2}) & \text{if } n \text{ is odd}
+\end{cases}
+$$
+$$
+= \begin{cases}
+n & \text{if } n \text{ is even} \\
+n + 1 & \text{if } n \text{ is odd}
+\end{cases}
+$$
+
+which is $URM$-computable thus proving the computability of $f$.
+
+# Generation of Computable Functions
+
+The aim here is to provide a way of proving that certain functions are computable by arguing that they are combinations of simpler functions that are known to be computable.
+
+This amounts to showing that there are operations $op$ that take functions $f_1$, $f_2$ and compose them producing $op(f_1, f_2)$ in a way that if $f_1, f_2 \in \mathcal{C}$ then $op(f_1, f_2)$ is still in $\mathcal{C}$ ($\mathcal{C}$ is _closed_ over $op$).
+
+More precisely we will prove that the $\mathcal{C}$ class is closed with respect to the following operations:
+- _(generalized) composition_
+- _primitive recursion_
+- _(unbounded) minimization_
+
+After this, in order to prove that a function $f : \mathbb{N}^k \to \mathbb{N}$ is computable we have two techniques: write a URM program $P$ that computes $f$ (i.e., such that $f^{(k)}_P = f$), or use the closure theorems of $\mathcal{C}$.
+
+Actually the three operations above are chosen carefully. The long term objective is to show that $\mathcal{C}$ coincides with the class of functions which can be obtained through composition, primitive recursion and minimization, starting from a restricted core of basic functions (partial recursive functions of Gödel-Kleene).
+
+##  Basic computable functions
+
+The following basic functions are URM-computable:
+
+1. constant zero
+   $z : \mathbb{N}^k \to \mathbb{N}$
+   $(x_1, \ldots, x_k) \mapsto 0$
+
+2. successor
+   $s : \mathbb{N} \to \mathbb{N}$
+   $x \mapsto x + 1$
+
+3. projection
+   $U^k_i : \mathbb{N}^k \to \mathbb{N}$
+   $(x_1, \ldots, x_k) \mapsto x_i$
+
+In fact, one immediately sees that these basic functions are computed by simple programs consisting of one arithmetic instruction:
+
+1. $z$ computed by $Z(1)$;
+2. $s$ computed by $S(1)$;
+3. $U^k_i$ computed by $T(i, 1)$.
+
+>**Remark**: The identity is just a special projection.
+
+To prove the closure properties we will need to "combine" programs so we need some notation.
+
+## General Notation
+
+Given a URM program $P$
+- $\rho(P)$ is the largest register index used in $P$
+- $l(P)$ is the number of instructions in $P$;
+- $P$ is in standard form if, for each $J(m, n, t)$ instruction, $t \leq l(P) + 1$ (if the program terminate it will do so at the instruction $l(P) + 1$).
+
+Considering only programs in standard form is not restrictive, as stated by the following lemma:
+
+>**Lemma** For each URM program $P$ there exists an equivalent program $P'$ in standard form, i.e. for all $k$, $f^{(k)}_P = f^{(k)}_{P'}$
+
+*Proof.* It is enough to replace every instruction $J(m, n, t)$ in $P$ such that $t > l(P) + 1$ with $J(m, n, l(P) + 1)$ $\square$
+
+Often we will have to concatenate programs. Given programs $P, Q$, their concatenation is obtained by considering $P$ followed by the instructions of $Q$. Only observe that jump instructions in $Q$ need to be updated (each instruction $J(m, n, t)$ in $Q$ is replaced with $J(m, n, t + l(P))$).
+
+>**Remark**: If $P$ and $Q$ are in standard form then $PQ$ is in standard form; moreover $(PQ)R = P(QR)$. We will assume every program is in standard form and we will use concatenation freely.
+
+It will be useful to consider programs which take the input and give the output in arbitrary registers.
+
+Given a program $P$, we want a program $P[i_1, \ldots, i_k \to h]$ that takes input from $R_{i1}, \ldots, R_{ik}$, without assuming that the remaining the registers are set to 0, and gives back the output in $R_h$. This is easily obtainable with transfer and reset operations to move the contents of registers from $i_1, \ldots, i_k$ to $1, \ldots, k$ and the output from $h$ to $1$.
+
+More precisely $P[i_1, \ldots, i_k \to h]$ is as follows:
+$$
+\begin{align}
+& \texttt{T}(i_1, 1) \\
+& \dots \\
+& \texttt{T}(i_k, k) \\
+& \texttt{Z}(k + 1) \\
+& \dots \\
+& \texttt{Z}(\rho(P)) \\
+& P \\
+& T(1, h)
+\end{align}
+$$
+
+## Generalized composition
+
+Given a function $f : \mathbb{N}^k \to \mathbb{N}$ and functions $g_1, \ldots, g_k : \mathbb{N}^n \to \mathbb{N}$ we define the composition $h : \mathbb{N}^n \to \mathbb{N}$ by
+
+$$
+h(\vec{x}) = \begin{cases}
+f(g_1(\vec{x}), \ldots, g_k(\vec{x})) & \text{if } g_1(\vec{x}) \downarrow, \ldots, g_k(\vec{x}) \downarrow \text{ and } f(g_1(\vec{x}), \ldots, g_k(\vec{x})) \downarrow \\
+\uparrow & \text{otherwise}
+\end{cases}
+$$
+
+**Example**: Consider
+$z(x) = 0 \quad \forall x \qquad ?(x) \uparrow \quad \forall x$
+then
+$z(?(x)) \uparrow \quad \forall x$
+
+**Example**: Consider $?$ and $U^2_1$, then
+$U^2_1(x_1, x_2) = x_1$ but $U^2_1(x_1, ?(x_2)) \uparrow$
+
+>**Proposition**: $\mathcal{C}$ is closed under generalised composition
+
+*Proof.*: Let
+
+$f : \mathbb{N}^k \to \mathbb{N};\ g_1, \ldots, g_k : \mathbb{N}^n \to \mathbb{N}$
+in $\mathcal{C}$, consider the composition
+$h : \mathbb{N}^k \to \mathbb{N} \quad \vec{x} \mapsto f(g_1(\vec{x}), \ldots, g_k(\vec{x}))$
+
+Since $f, g_1, \ldots, g_k \in \mathcal{C}$, we can take $F, G_1, \ldots, G_k$ programs in standard form for them.
+
+Let us consider the largest register index possibly used by the involved programs i.e., $m = \max\{\rho(F), \rho(G_1), \ldots \rho(G_k), k, n\}$. Then the registers from $m + 1$ on can be used freely without the risk of interferences. We can then store the vector input $\vec{x}$ from $m + 1$ on and keep it for all the $G_i$. 
+The idea is chaining sequentially the executions of $G_i$ and then executing $F$ on the results.
+
+$$
+\begin{array}{|c|c|c|c|c|c|c|}
+\hline
+1 \dots m & m + 1 & \dots & m + n & m + n + 1 & \dots & m + n + k \\
+\hline
+\dots & x_1 & \dots & x_n & g_1(\vec{x}) & \dots & g_k(\vec{x}) \\
+\hline
+\end{array}
+$$
+
+$$
+\begin{align}
+& T(1, m + 1) \\
+& \dots \\
+& T(n, m + n) \\
+& G_1[m + 1, \dots, m + n \rightarrow m + n + 1] \\
+& \dots \\
+& G_k[m + 1, \dots, m + n \rightarrow m + n + k] \\
+& F[m + n + 1, \dots, m + n + k \rightarrow 1] \\
+\end{align}
+$$
+
+This allows us to conclude that $h \in \mathcal{C}$.
+
+**Example**: If $f : \mathbb{N}^2 \to \mathbb{N}$ is computable, then the following are also computable
+- $f_1(x, y) = f(y, x)$;
+- $f_2(x) = f(x, x)$;
+- $f_3(x, y, z) = f(x, y)$.
+
+>**Remark**: On the basis of the results above we can use generalised composition when the $g_i$ are not functions of all the variables or are functions with repetitions.
+
+>**Remark**: Function composition may "hide" several projections: we know that $f : \mathbb{N}^2 \to \mathbb{N}$ where $f(x_1, x_2) = x_1 + x_2$ is computable. Using this fact and the closure of $\mathcal{C}$ under generalise composition we can derive that $g : \mathbb{N}^3 \to \mathbb{N}$ where $g(x_1, x_2, x_3) = x_1 + x_2 + x_3$ is also computable. In fact $g(x_1, x_2, x_3) = f(f(x_1, x_2), x_3) = f(f(U^3_1(\vec{x}), U^3_2(\vec{x})), U^3_3(\vec{x}))$, that is computable.
+
+### Example: Computable Functions under Composition
+The following functions are computable
+- **constant**: $m(\vec{x}) = m$
+  $m(\vec{x}) = s(s(\ldots s(z(\vec{x}))))$, i.e., $s$ applied $m$ times;
+- **addition**: $g(x_1, \ldots, x_k) = x_1 + \cdots + x_k$, as seen before;
+- **product by a constant**: $f(x) = k \cdot x = g(x, \ldots, x)$, where $g$ is the function at the previous step;
+- if $f(x, y)$ is computable, then also $f'(x) = f(x, m)$ is computable. In fact $f'(x) = f(x, m) = f(U^1_1(x), m(x))$, that is computable;
+- if $f : \mathbb{N} \to \mathbb{N}$ is total computable, the predicate $Q(x, y) = "f(x) = y"$ is decidable.
+  In fact, we know that
+  $$X_{Eq}(x, y) = \begin{cases}
+  1 & x = y \\
+  0 & \text{otherwise}
+  \end{cases}$$
+  is computable.
+  Therefore $X_Q(x, y) = X_{Eq}(f(x), y) = X_{Eq}(f(U^2_1(x, y)), U^2_2(x, y))$, and thus $X_Q$ is computable.
+
+## 6.3. Primitive recursion
+
+Recursion is a familiar concept; it allows to define a function specifying its values in terms of other values of the same function (and possibly using other functions already defined).
+
+**Example 6.13 (Factorial).**
+$$\begin{cases}
+0! = 1 \\
+(n + 1)! = n! \cdot (n + 1)
+\end{cases}$$
+
+**Example 6.14 (Fibonacci).**
+$$\begin{cases}
+f(0) = 1 \\
+f(1) = 1 \\
+f(n + 2) = f(n) + f(n + 1)
+\end{cases}$$
+
+There are many types of recursion, here we use a very "controlled" version of recursion.
+
+**Definition 6.15 (Primitive recursion).** Given $f : \mathbb{N}^k \to \mathbb{N}$ and $g : \mathbb{N}^{k+2} \to \mathbb{N}$ functions, we define $h : \mathbb{N}^{k+1} \to \mathbb{N}$ by primitive recursion as follows
+$$\begin{cases}
+h(\vec{x}, 0) = f(\vec{x}) \\
+h(\vec{x}, y + 1) = g(\vec{x}, y, h(\vec{x}, y))
+\end{cases}$$
+
+**Remark 6.16.** The function $h$ is defined in an equational manner, with $h$ that appears on both sides: it is an implicit definition and it is not obvious that such $h$ exists or that it is unique, but actually it does exist and it is unique. However, a general theory that supports this observation is not trivial.
+
+The argument proceeds as follows
+1. let $\mathbb{N}^n \to \mathbb{N}$ the set of functions on natural numbers with $n$ arguments
+2. we define an operator
+   $$T : (\mathbb{N}^{k+1} \to \mathbb{N}) \to (\mathbb{N}^{k+1} \to \mathbb{N})$$
+   $$T(h)(\vec{x}, 0) = f(\vec{x})$$
+   $$T(h)(\vec{x}, y + 1) = g(\vec{x}, y, h(\vec{x}, y))$$
+3. the desired function is a fixed points of $T$, i.e. $h$ such that $T(h) = h$;
+4. the existence of the fixed point follows from these properties
+   - $\mathbb{N}^{k+1} \to \mathbb{N}$ is a CPO;
+   - $T$ is continuous;
+   - continuous functions over a CPO have a least fixed point.
+5. uniqueness can be proved inductively, showing that if $h, h'$ are fixed points then $h = h'$.
+
+**Example 6.17.** Consider the sum function $h(x, y) = x + y$. It can be defined by primitive recursion as
+$$\begin{cases}
+h(x, 0) = x = f(x) \\
+h(x, y + 1) = h(x, y) + 1 = g(h(x, y))
+\end{cases}$$
+where $f$ is the identity and $g$ is the successor. Both are computable, so the sum is computable by primitive recursion.
+
+**Proposition 6.18.** Functions obtained from total functions by
+1. generalized composition
+2. primitive recursion
+are total.
+
+*Proof.*
+1. obvious by definition;
+2. Let $f : \mathbb{N}^k \to \mathbb{N}$, $g : \mathbb{N}^{k+2} \to \mathbb{N}$ be total functions and define $h$ by primitive recursion.
+   It can be proved by induction on $y$ that
+   $\forall \vec{x} \in \mathbb{N}^k \quad (\vec{x}, y) \in dom(h)$
+   - $(y = 0)$: for all $\vec{x} \in \mathbb{N}^k$, $h(\vec{x}, 0) = f(\vec{x}) \downarrow$;
+   - $(y \to y+1)$: for all $\vec{x} \in \mathbb{N}^k$, $h(\vec{x}, y+1) = g(\vec{x}, y, h(\vec{x}, y)) \downarrow$ by inductive hypothesis.
+$\square$
+
+**Example 6.19.** We observe that some functions can be defined by primitive recursion:
+
+- sum $x + y$
+  $$\begin{cases}
+  x + 0 = x \\
+  x + (y + 1) = (x + y) + 1
+  \end{cases}$$
+  $$\begin{cases}
+  h(x, 0) = x \\
+  h(x, y + 1) = h(x, y) + 1
+  \end{cases}$$
+  $f(x) = x$
+  $g(x,
